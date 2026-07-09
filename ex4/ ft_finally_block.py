@@ -52,8 +52,7 @@ def test_watering_system() -> None:
     finally:
         print("Closing watering system")
 
-    print("Cleanup always happens, even with errors!")
-
 
 if __name__ == "__main__":
     test_watering_system()
+    print("Cleanup always happens, even with errors!")

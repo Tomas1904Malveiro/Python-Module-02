@@ -15,11 +15,16 @@ def water_plant(plant_name: str) -> None:
     print(f"Watering {plant_name}: [OK]")
 
 
-def run_watering(plants: list[str]) -> None:
+def test_watering_system() -> None:
+    print("=== Garden Watering System ===")
+
+    print("Testing valid plants...")
     print("Opening watering system")
 
     try:
-        for plant in plants:
+        valid_plants = ["Tomato", "Lettuce", "Carrots"]
+
+        for plant in valid_plants:
             water_plant(plant)
 
     except PlantError as err:
@@ -30,15 +35,22 @@ def run_watering(plants: list[str]) -> None:
     finally:
         print("Closing watering system")
 
-
-def test_watering_system() -> None:
-    print("=== Garden Watering System ===")
-
-    print("Testing valid plants...")
-    run_watering(["Tomato", "Lettuce", "Carrots"])
-
     print("Testing invalid plants...")
-    run_watering(["Tomato", "lettuce", "Carrots"])
+    print("Opening watering system")
+
+    try:
+        invalid_plants = ["Tomato", "lettuce", "Carrots"]
+
+        for plant in invalid_plants:
+            water_plant(plant)
+
+    except PlantError as err:
+        print(f"Caught PlantError: {err}")
+        print(".. ending tests and returning to main")
+        return
+
+    finally:
+        print("Closing watering system")
 
     print("Cleanup always happens, even with errors!")
 
